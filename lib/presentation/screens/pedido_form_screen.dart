@@ -21,7 +21,6 @@ class _PedidoFormScreenState extends ConsumerState<PedidoFormScreen> {
 
   int? _selectedClienteId;
   int? _selectedPlatoId;
-  String _selectedEstado = 'PENDIENTE';
 
   bool _isLoading = false;
 
@@ -46,7 +45,7 @@ class _PedidoFormScreenState extends ConsumerState<PedidoFormScreen> {
         _numeroMesaController.text = pedido.numeroMesa.toString();
         _selectedClienteId = pedido.clienteId;
         _selectedPlatoId = pedido.platoId;
-        _selectedEstado = pedido.estado;
+        // El estado no se carga porque el backend no lo maneja
       });
     });
   }
@@ -186,43 +185,6 @@ class _PedidoFormScreenState extends ConsumerState<PedidoFormScreen> {
                       },
                     ),
 
-                    const SizedBox(height: 16),
-
-                    // Estado
-                    DropdownButtonFormField<String>(
-                      value: _selectedEstado,
-                      decoration: const InputDecoration(
-                        labelText: 'Estado',
-                        prefixIcon: Icon(Icons.info),
-                        border: OutlineInputBorder(),
-                      ),
-                      items: const [
-                        DropdownMenuItem(
-                          value: 'PENDIENTE',
-                          child: Text('Pendiente'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'EN_PROCESO',
-                          child: Text('En Proceso'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'COMPLETADO',
-                          child: Text('Completado'),
-                        ),
-                        DropdownMenuItem(
-                          value: 'CANCELADO',
-                          child: Text('Cancelado'),
-                        ),
-                      ],
-                      onChanged: (value) {
-                        if (value != null) {
-                          setState(() {
-                            _selectedEstado = value;
-                          });
-                        }
-                      },
-                    ),
-
                     const SizedBox(height: 32),
 
                     // Botones
@@ -271,7 +233,7 @@ class _PedidoFormScreenState extends ConsumerState<PedidoFormScreen> {
       numeroMesa: int.parse(_numeroMesaController.text),
       clienteId: _selectedClienteId!,
       platoId: _selectedPlatoId!,
-      estado: _selectedEstado,
+      // estado y fechaPedido tienen valores por defecto
     );
 
     if (widget.pedidoId == null) {

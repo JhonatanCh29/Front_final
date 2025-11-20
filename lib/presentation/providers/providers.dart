@@ -73,7 +73,7 @@ final platoRepositoryProvider = Provider<PlatoRepository>((ref) {
   );
 });
 
-// Use Cases - Pedidos
+// Use Cases - Pedidos (CONECTADO AL BACKEND REAL)
 final getPedidosProvider = Provider<GetPedidos>((ref) {
   return GetPedidos(ref.watch(pedidoRepositoryProvider));
 });
@@ -94,7 +94,7 @@ final deletePedidoProvider = Provider<DeletePedido>((ref) {
   return DeletePedido(ref.watch(pedidoRepositoryProvider));
 });
 
-// Use Cases - Clientes y Platos
+// Use Cases - Clientes y Platos (CONECTADO AL BACKEND REAL)
 final getClientesProvider = Provider<GetClientes>((ref) {
   return GetClientes(ref.watch(clienteRepositoryProvider));
 });

@@ -1,9 +1,9 @@
 class ApiConstants {
   // Base URL del backend Spring Boot
   // Emulador Android usa 10.0.2.2 (representa el host machine)
-  static const String baseUrl = 'http://10.0.2.2:8080/';
+  static const String baseUrl = 'http://10.0.2.2:8080';
 
-  // Endpoints
+  // Endpoints (sin barra inicial porque baseUrl ya no tiene barra final)
   static const String pedidosEndpoint = '/api/pedido';
   static const String clientesEndpoint = '/api/cliente';
   static const String platosEndpoint = '/api/plato';

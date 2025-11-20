@@ -3,8 +3,8 @@ import 'package:equatable/equatable.dart';
 class Pedido extends Equatable {
   final int? id;
   final int numeroMesa;
-  final String estado;
-  final DateTime? fechaPedido;
+  final String estado;  // Opcional con valor por defecto, el backend no lo maneja
+  final DateTime? fechaPedido; // Opcional, el backend no lo maneja
   final int clienteId;
   final String? clienteNombre;
   final String? clienteTelefono;
@@ -16,7 +16,7 @@ class Pedido extends Equatable {
   const Pedido({
     this.id,
     required this.numeroMesa,
-    required this.estado,
+    this.estado = 'PENDIENTE', // Valor por defecto ya que el backend no lo maneja
     this.fechaPedido,
     required this.clienteId,
     this.clienteNombre,

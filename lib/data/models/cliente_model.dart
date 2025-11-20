@@ -9,7 +9,7 @@ class ClienteModel extends Cliente {
 
   factory ClienteModel.fromJson(Map<String, dynamic> json) {
     return ClienteModel(
-      id: json['id'] as int?,
+      id: json['idCliente'] as int?,  // Backend usa 'idCliente'
       nombre: json['nombre']?.toString() ?? '',
       telefono: json['telefono']?.toString() ?? '',
     );

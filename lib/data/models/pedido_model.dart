@@ -17,32 +17,36 @@ class PedidoModel extends Pedido {
 
   // FromJson para PedidoResponseDTO (GET)
   factory PedidoModel.fromJson(Map<String, dynamic> json) {
+    final cliente = json['cliente'] as Map<String, dynamic>?;
+    final plato = json['plato'] as Map<String, dynamic>?;
+    
     return PedidoModel(
-      id: json['id'] as int?,
+      id: json['idPedido'] as int?,  // Backend usa 'idPedido'
       numeroMesa: json['numeroMesa'] as int,
-      estado: json['estado'] as String? ?? 'PENDIENTE',
-      fechaPedido: json['fechaPedido'] != null
-          ? DateTime.parse(json['fechaPedido'].toString())
-          : null,
-      clienteId: json['clienteId'] as int,
-      clienteNombre: json['clienteNombre']?.toString(),
-      clienteTelefono: json['clienteTelefono']?.toString(),
-      platoId: json['platoId'] as int,
-      platoNombre: json['platoNombre']?.toString(),
-      platoDescripcion: json['platoDescripcion']?.toString(),
-      platoPrecio: json['platoPrecio'] != null
-          ? (json['platoPrecio'] as num).toDouble()
+      estado: 'PENDIENTE',  // Tu backend no maneja estado, usar default
+      fechaPedido: DateTime.now(),  // Tu backend no maneja fecha, usar actual
+      clienteId: cliente?['idCliente'] as int? ?? 0,
+      clienteNombre: cliente?['nombre']?.toString(),
+      clienteTelefono: cliente?['telefono']?.toString(),
+      platoId: plato?['idPlato'] as int? ?? 0,
+      platoNombre: plato?['nombre']?.toString(),
+      platoDescripcion: plato?['descripcion']?.toString(),
+      platoPrecio: plato?['precio'] != null
+          ? (plato!['precio'] as num).toDouble()
           : null,
     );
   }
 
-  // ToJson para PedidoDTO (POST/PUT)
+  // ToJson para PedidoDTO (POST/PUT) - Estructura que espera el backend
   Map<String, dynamic> toJson() {
     return {
       'numeroMesa': numeroMesa,
-      'clienteId': clienteId,
-      'platoId': platoId,
-      'estado': estado,
+      'plato': {
+        'idPlato': platoId
+      },
+      'cliente': {
+        'idCliente': clienteId
+      },
     };
   }
 

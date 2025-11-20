@@ -10,7 +10,7 @@ class PlatoModel extends Plato {
 
   factory PlatoModel.fromJson(Map<String, dynamic> json) {
     return PlatoModel(
-      id: json['id'] as int?,
+      id: json['idPlato'] as int?,  // Backend usa 'idPlato'
       nombre: json['nombre']?.toString() ?? '',
       descripcion: json['descripcion']?.toString(),
       precio: (json['precio'] as num?)?.toDouble() ?? 0.0,
